@@ -24,93 +24,76 @@ export function Sidebar({ className }: SidebarProps) {
   ];
 
   return (
-    <div className={cn("pb-12 w-64 bg-white border-r hidden md:block", className)}>
-      <div className="space-y-4 py-4">
-        <div className="px-4 py-2">
-          <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight">
-            Stats
-          </h2>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="flex flex-col items-center rounded-md border p-3 hover:bg-accent">
-              <span className="text-xs text-muted-foreground">Streak</span>
-              <span className="font-bold text-orange-500">{stats.streak} days</span>
+    <div className={cn("w-60 border-r border-neutral-200 bg-white hidden md:block", className)}>
+      <div className="flex flex-col h-full">
+        <div className="p-3 mb-2">
+          <div className="text-xs text-neutral-500 font-medium px-3 py-1">STATS</div>
+          <div className="grid grid-cols-2 gap-1 mt-1 px-1">
+            <div className="flex items-center justify-between text-sm p-2 rounded-md hover:bg-neutral-100">
+              <span className="text-neutral-600">Streak</span>
+              <span className="font-medium">{stats.streak} days</span>
             </div>
-            <div className="flex flex-col items-center rounded-md border p-3 hover:bg-accent">
-              <span className="text-xs text-muted-foreground">Today</span>
-              <span className="font-bold text-green-500">{stats.todayMinutes} min</span>
-            </div>
-            <div className="flex flex-col items-center rounded-md border p-3 hover:bg-accent">
-              <span className="text-xs text-muted-foreground">Weekly Goal</span>
-              <span className="font-bold text-blue-500">{stats.weeklyGoal}</span>
-            </div>
-            <div className="flex flex-col items-center rounded-md border p-3 hover:bg-accent">
-              <span className="text-xs text-muted-foreground">Points</span>
-              <span className="font-bold text-primary">{stats.totalPoints}</span>
+            <div className="flex items-center justify-between text-sm p-2 rounded-md hover:bg-neutral-100">
+              <span className="text-neutral-600">Today</span>
+              <span className="font-medium">{stats.todayMinutes} min</span>
             </div>
           </div>
         </div>
         
-        <div className="px-4 py-2">
-          <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight">
-            Current Subjects
-          </h2>
-          <div className="space-y-1">
+        <div className="p-3 flex-1 overflow-auto">
+          <div className="text-xs text-neutral-500 font-medium px-3 py-1">SUBJECTS</div>
+          <div className="flex flex-col gap-0.5 mt-1">
             {currentSubjects.map(subject => (
               <Link
                 key={subject.id}
                 to={`/subjects/${subject.id}`}
-                className="group flex w-full items-center rounded-md border px-2 py-2 hover:bg-accent hover:text-accent-foreground"
+                className="flex flex-col gap-1 px-3 py-2 text-sm rounded-md hover:bg-neutral-100"
               >
-                <div className="w-full">
-                  <div className="flex justify-between">
-                    <span className="text-sm font-medium">{subject.name}</span>
-                    <span className="text-xs text-muted-foreground">{subject.progress}%</span>
-                  </div>
-                  <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                    <div 
-                      className="h-full bg-primary" 
-                      style={{ width: `${subject.progress}%` }}
-                    ></div>
-                  </div>
+                <div className="flex justify-between">
+                  <span className="font-medium">{subject.name}</span>
+                  <span className="text-xs text-neutral-500">{subject.progress}%</span>
+                </div>
+                <div className="h-1 w-full bg-neutral-100 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-neutral-800" 
+                    style={{ width: `${subject.progress}%` }}
+                  ></div>
                 </div>
               </Link>
             ))}
             <Link
               to="/subjects/new"
-              className="flex w-full items-center justify-center rounded-md border border-dashed px-2 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+              className="flex items-center gap-1 px-3 py-2 mt-1 text-sm text-neutral-500 rounded-md hover:bg-neutral-100 hover:text-neutral-900"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1 h-4 w-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14"></path>
                 <path d="M12 5v14"></path>
               </svg>
-              Add New Subject
+              New Subject
             </Link>
           </div>
         </div>
         
-        <div className="px-4 py-2">
-          <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight">
-            Quick Links
-          </h2>
-          <div className="space-y-1">
+        <div className="p-3 mt-auto border-t border-neutral-200">
+          <div className="text-xs text-neutral-500 font-medium px-3 py-1">QUICK ACCESS</div>
+          <div className="flex flex-col gap-0.5 mt-1">
             <Link
               to="/tests/upcoming"
-              className="group flex w-full items-center rounded-md border px-2 py-2 hover:bg-accent hover:text-accent-foreground"
+              className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-neutral-100"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 h-4 w-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
                 <line x1="16" x2="16" y1="2" y2="6"></line>
                 <line x1="8" x2="8" y1="2" y2="6"></line>
                 <line x1="3" x2="21" y1="10" y2="10"></line>
-                <path d="m9 16 2 2 4-4"></path>
               </svg>
               Upcoming Tests
             </Link>
             <Link
               to="/friends/leaderboard"
-              className="group flex w-full items-center rounded-md border px-2 py-2 hover:bg-accent hover:text-accent-foreground"
+              className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-neutral-100"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 h-4 w-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -120,9 +103,9 @@ export function Sidebar({ className }: SidebarProps) {
             </Link>
             <Link
               to="/study-space"
-              className="group flex w-full items-center rounded-md border px-2 py-2 hover:bg-accent hover:text-accent-foreground"
+              className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-neutral-100"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 h-4 w-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
               </svg>
